@@ -5,7 +5,7 @@ metadata:
   - finalizer.lm-controller.ai.contrib.fluxcd.io
   generation: 1
   labels:
-    ai.contrib.fluxcd.io/model: llama-2-7b-chat
+    ai.contrib.fluxcd.io/model: zephyr-7b-beta
     ai.contrib.fluxcd.io/model-namespace: weave-ai
   name: my-model
   namespace: default
@@ -28,6 +28,6 @@ spec:
   serviceAccountName: default
   sourceRef:
     kind: OCIRepository
-    name: llama-2-7b-chat
+    name: zephyr-7b-beta
     namespace: weave-ai
   timeout: 2m0s

@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    kubernetes.io/metadata.name: weave-ai
+  name: weave-ai
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: weave-ai
+  namespace: weave-ai
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://github.com/den-vasyliev/weave-ai
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: weave-ai
+  namespace: weave-ai
+spec:
+  interval: 10m0s
+  path: ./source
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: weave-ai

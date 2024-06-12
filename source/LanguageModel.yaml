@@ -17,7 +17,7 @@ spec:
     replicas: 1
     resources:
       requests:
-        cpu: "6"
+        cpu: "4"
     serviceType: ClusterIP
     storageClass: standard
   interval: 2m0s

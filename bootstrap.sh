@@ -17,7 +17,6 @@ sudo apt-get install htop
 curl -s https://fluxcd.io/install.sh | sudo FLUX_VERSION=2.0.0 bash
 sudo chmod +x /usr/local/bin/flux
 git clone https://github.com/fluxcd/terraform-provider-flux
-
 cd terraform-provider-flux/examples/github-via-pat
 
 sed -i '/default     = ""/d' variables.tf
@@ -29,12 +28,14 @@ EOF
 rm -rf /home/codespace/.oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+read -s TF_VAR_github_token
+export TF_VAR_github_token
 
-#read -s TF_VAR_github_token
-#export TF_VAR_github_token
+alias k=kubectl
+source <(kubectl completion zsh)
+alias tf=terraform
+tf init
+tf apply
 
-#alias tf=terraform
-#alias k=kubectl
-#source <(kubectl completion zsh)
-#tf init
-#tf apply
+#metrics-server
+kubectl apply -f https://raw.githubusercontent.com/pythianarora/total-practice/master/sample-kubernetes-code/metrics-server.yaml
